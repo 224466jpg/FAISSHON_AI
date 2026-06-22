@@ -1,4 +1,24 @@
 services:
+  # Full-stack service: builds frontend and serves via root index.js
+  - type: web
+    name: faisshon-ai-fullstack
+    runtime: node
+    buildCommand: npm install && npm install --prefix styleai --include=dev && npm run build --prefix styleai
+    startCommand: node index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+
+  # Backend-only API service (styleai/server)
   - type: web
     name: faisshon-ai-api
     runtime: node
@@ -20,11 +40,12 @@ services:
       - key: CORS_ORIGIN
         sync: false
 
+  # Static frontend only
   - type: web
-    name: faisshon-ai
+    name: faisshon-ai-frontend
     runtime: static
     rootDir: styleai
-    buildCommand: npm install && npm run build
+    buildCommand: npm install --include=dev && npm run build
     staticPublishPath: ./dist
     envVars:
       - key: VITE_API_URL
