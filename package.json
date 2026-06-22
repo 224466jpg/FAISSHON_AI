@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "node index.js",
     "start": "node index.js",
-    "build": "npm install && npm install --prefix styleai && npm run build --prefix styleai",
+    "build": "npm install && npm install --prefix styleai --include=dev && npm run build --prefix styleai",
     "preview": "npm run preview --prefix styleai"
   },
   "keywords": [],
