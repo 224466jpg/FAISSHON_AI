@@ -31,6 +31,18 @@ if (!fs.existsSync(uploadsDir)) {
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const defaultOrigins = [
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'http://localhost:5175'
+];
+const configuredOrigins = [
+  process.env.FRONTEND_URL,
+  ...(process.env.CORS_ORIGIN?.split(',') || [])
+]
+  .filter(Boolean)
+  .map((origin) => origin.trim().replace(/\/$/, ''));
+const allowedOrigins = [...new Set([...defaultOrigins, ...configuredOrigins])];
 
 // Connect to MongoDB
 connectDB();
@@ -40,7 +52,13 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
 app.use(cors({
-  origin: process.env.CORS_ORIGIN?.split(',') || '*',
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin.replace(/\/$/, ''))) {
+      return callback(null, true);
+    }
+
+    return callback(new Error(`CORS blocked request from origin: ${origin}`));
+  },
   credentials: true
 }));
 app.use(compression());

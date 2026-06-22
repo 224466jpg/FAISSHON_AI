@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
 
 export const connectDB = async () => {
+  if (!process.env.MONGODB_URI) {
+    console.warn('⚠️  MONGODB_URI is not set - history features disabled');
+    return;
+  }
+
   try {
     const conn = await mongoose.connect(process.env.MONGODB_URI, {
       serverSelectionTimeoutMS: 5000,
