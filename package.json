@@ -2,12 +2,12 @@
   "name": "faishonai",
   "version": "1.0.0",
   "description": "AI Fashion Recommendation Backend",
-  "main": "index.js",
+  "main": "server-entry.js",
   "type": "commonjs",
   "scripts": {
-    "dev": "node index.js",
+    "dev": "node server-entry.js",
     "dev:full": "bash styleai/start-all.sh",
-    "start": "node index.js",
+    "start": "node server-entry.js",
     "postinstall": "npm install --prefix styleai --include=dev && npm install --prefix styleai/server && npm run build --prefix styleai",
     "build": "npm install && npm install --prefix styleai --include=dev && npm install --prefix styleai/server && npm run build --prefix styleai",
     "preview": "npm run preview --prefix styleai"
