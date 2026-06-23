@@ -1,4 +1,7 @@
 {
+  "framework": "vite",
+  "buildCommand": "npm run build --prefix styleai",
+  "outputDirectory": "styleai/dist",
   "cleanUrls": true,
   "rewrites": [
     { "source": "/((?!assets/).*)", "destination": "/index.html" }
