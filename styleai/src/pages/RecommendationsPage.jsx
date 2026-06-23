@@ -26,7 +26,10 @@ function getSafeImage(item, index) {
   }
 
   if (candidate.startsWith('/uploads')) {
-    return `http://localhost:5000${candidate}`;
+    const origin = import.meta.env.VITE_API_URL
+      ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '')
+      : '';
+    return `${origin}${candidate}`;
   }
 
   return candidate;

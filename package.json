@@ -6,9 +6,10 @@
   "type": "commonjs",
   "scripts": {
     "dev": "node index.js",
+    "dev:full": "bash styleai/start-all.sh",
     "start": "node index.js",
-    "postinstall": "npm install --prefix styleai --include=dev && npm run build --prefix styleai",
-    "build": "npm install && npm install --prefix styleai --include=dev && npm run build --prefix styleai",
+    "postinstall": "npm install --prefix styleai --include=dev && npm install --prefix styleai/server && npm run build --prefix styleai",
+    "build": "npm install && npm install --prefix styleai --include=dev && npm install --prefix styleai/server && npm run build --prefix styleai",
     "preview": "npm run preview --prefix styleai"
   },
   "keywords": [],
@@ -16,10 +17,12 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.18.0",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "groq-sdk": "^1.2.1",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^9.7.1",
     "multer": "^2.2.0"
   }

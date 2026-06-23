@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { loginUser, registerUser } from '../services/fashionApi';
 
 function AuthPage() {
+  const navigate = useNavigate();
   const [mode, setMode] = useState('login');
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   const [status, setStatus] = useState('');
@@ -22,10 +24,10 @@ function AuthPage() {
         : await registerUser(form);
 
       localStorage.setItem('fashion-ai-user', JSON.stringify(user));
-      setStatus(mode === 'login' ? 'Login successful.' : 'Account created successfully.');
+      setStatus(mode === 'login' ? 'Login successful. Redirecting...' : 'Account created. Redirecting...');
+      setTimeout(() => navigate('/dashboard'), 600);
     } catch (error) {
       setStatus(error.message);
-    } finally {
       setLoading(false);
     }
   };

@@ -101,7 +101,10 @@ function EditorialPage() {
     if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
       return url;
     }
-    return `http://localhost:5000${url.startsWith('/') ? '' : '/'}${url}`;
+    const origin = import.meta.env.VITE_API_URL
+      ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '')
+      : '';
+    return `${origin}${url.startsWith('/') ? '' : '/'}${url}`;
   };
 
   // Toast notification manager

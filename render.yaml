@@ -3,7 +3,7 @@ services:
   - type: web
     name: faisshon-ai-fullstack
     runtime: node
-    buildCommand: npm install && npm install --prefix styleai --include=dev && npm run build --prefix styleai
+    buildCommand: npm install && npm install --prefix styleai --include=dev && npm install --prefix styleai/server && npm run build --prefix styleai
     startCommand: node index.js
     healthCheckPath: /api/health
     envVars:

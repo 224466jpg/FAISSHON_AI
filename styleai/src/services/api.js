@@ -3,7 +3,7 @@
  * Handles all backend communication with proper error handling
  */
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 // Helper function for API requests
 async function apiRequest(endpoint, options = {}) {

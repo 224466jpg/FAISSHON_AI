@@ -3,7 +3,9 @@ import SectionHeader from '../components/SectionHeader';
 import { wardrobeItems } from '../data/styleData';
 import { getOutfits, saveOutfit } from '../services/fashionApi';
 
-const API_ORIGIN = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace('/api', '');
+const API_ORIGIN = import.meta.env.VITE_API_URL
+  ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '')
+  : '';
 
 function imageSource(item) {
   if (item.image) return item.image;
