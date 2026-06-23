@@ -1,14 +1,6 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "styleai/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
+  "outputDirectory": "styleai/dist",
+  "cleanUrls": true,
   "rewrites": [
     {
       "source": "/api/:path*",
