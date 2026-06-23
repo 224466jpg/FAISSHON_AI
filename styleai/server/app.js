@@ -52,7 +52,11 @@ export function createApiApp() {
   }));
   app.use(cors({
     origin(origin, callback) {
-      if (!origin || allowedOrigins.includes(origin.replace(/\/$/, ''))) {
+      if (
+        !origin || 
+        allowedOrigins.includes(origin.replace(/\/$/, '')) || 
+        origin.replace(/\/$/, '').endsWith('.vercel.app')
+      ) {
         return callback(null, true);
       }
 
