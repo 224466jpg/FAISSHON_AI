@@ -1,21 +1,6 @@
 {
-  "builds": [
-    {
-      "src": "styleai/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "styleai/dist"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/assets/(.*)",
-      "dest": "styleai/dist/assets/$1"
-    },
-    {
-      "src": "/((?!api/).*)",
-      "dest": "styleai/dist/index.html"
-    }
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/((?!assets/).*)", "destination": "/index.html" }
   ]
 }

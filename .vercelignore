@@ -1,0 +1,6 @@
+# Ignore backend files during Vercel deployment to prevent serverless function generation
+index.js
+render.yaml
+styleai/server/
+styleai/server/**
+**/server/**
