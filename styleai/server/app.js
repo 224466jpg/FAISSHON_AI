@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
@@ -69,6 +70,7 @@ export function createApiApp() {
     res.json({
       status: 'OK',
       message: 'Fashion AI Stylist API is running',
+      database: mongoose.connection.readyState === 1 ? 'CONNECTED' : 'DISCONNECTED',
       timestamp: new Date().toISOString(),
       version: '1.0.0',
     });
