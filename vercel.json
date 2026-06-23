@@ -1,9 +1,22 @@
 {
-  "framework": "vite",
-  "buildCommand": "npm run build --prefix styleai",
-  "outputDirectory": "styleai/dist",
-  "cleanUrls": true,
+  "version": 2,
+  "builds": [
+    {
+      "src": "styleai/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
   "rewrites": [
-    { "source": "/((?!assets/).*)", "destination": "/index.html" }
+    {
+      "source": "/api/:path*",
+      "destination": "https://faisshon-ai-8.onrender.com/api/:path*"
+    },
+    {
+      "source": "/((?!assets/).*)",
+      "destination": "/index.html"
+    }
   ]
 }

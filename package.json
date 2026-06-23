@@ -8,8 +8,8 @@
     "dev": "node server-entry.js",
     "dev:full": "bash styleai/start-all.sh",
     "start": "node server-entry.js",
-    "postinstall": "npm install --prefix styleai --include=dev && npm install --prefix styleai/server && npm run build --prefix styleai",
-    "build": "npm install && npm install --prefix styleai --include=dev && npm install --prefix styleai/server && npm run build --prefix styleai",
+    "postinstall": "npm install --prefix styleai --include=dev && ( [ ! -d styleai/server ] || npm install --prefix styleai/server ) && npm run build --prefix styleai",
+    "build": "npm install && npm install --prefix styleai --include=dev && ( [ ! -d styleai/server ] || npm install --prefix styleai/server ) && npm run build --prefix styleai",
     "preview": "npm run preview --prefix styleai"
   },
   "keywords": [],
