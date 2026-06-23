@@ -1,0 +1,3 @@
+# Ignore backend server directory in Vercel build
+server/
+server/**
